@@ -2,924 +2,795 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>🇯🇵 大阪・神戶・名古屋 2026</title>
 <style>
 :root {
-  --bg: #f7f6f3;
+  --bg: #f5f4f0;
   --surface: #ffffff;
-  --surface2: #f0ede8;
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(0,0,0,0.14);
-  --text: #1a1a1a;
+  --surface2: #eeecea;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.13);
+  --text: #1c1b18;
   --text2: #6b6560;
-  --text3: #a09b96;
-  --accent: #2b5ce6;
-  --accent-bg: #eef1fd;
-  --tbd: #c9b99a;
-  --tbd-bg: #faf7f2;
-  --green: #1a7a4a;
-  --green-bg: #e8f5ee;
+  --text3: #a8a39d;
+  --accent: #1a5cff;
+  --accent-bg: #edf1ff;
+  --green: #187a45;
+  --green-bg: #e7f4ed;
+  --amber: #9a6000;
+  --amber-bg: #fef6e4;
+  --purple: #6a3fa0;
+  --purple-bg: #f2edfa;
+  --pink: #ad2f5e;
+  --pink-bg: #fceef4;
   --red: #c0392b;
   --red-bg: #fdf0ef;
-  --amber: #9a6200;
-  --amber-bg: #fef7e6;
-  --purple: #6b3fa0;
-  --purple-bg: #f3eefb;
-  --pink: #b03060;
-  --pink-bg: #fdf0f5;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --nav-h: 60px;
+  --tbd-border: #d4c5a9;
+  --r: 12px;
+  --r-sm: 8px;
+  --nav: 62px;
   --font: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100dvh; }
-.app { max-width: 480px; margin: 0 auto; padding-bottom: calc(var(--nav-h) + 16px); }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh}
+.app{max-width:480px;margin:0 auto;padding-bottom:calc(var(--nav) + 20px)}
 
-/* NAV */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-top: .5px solid var(--border); height: var(--nav-h); display: flex; z-index: 100; max-width: 480px; margin: 0 auto; }
-.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; border: none; background: none; color: var(--text3); font-size: 10px; font-family: var(--font); transition: color .15s; padding: 0; }
-.nav-item.active { color: var(--accent); }
-.nav-item svg { width: 22px; height: 22px; }
+/* ── BOTTOM NAV ── */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:var(--nav);background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:.5px solid var(--border);display:flex;z-index:100;max-width:480px;margin:0 auto}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;color:var(--text3);font-size:10px;font-family:var(--font);cursor:pointer;padding:0;transition:color .15s}
+.bnav-item.on{color:var(--accent)}
+.bnav-item svg{width:22px;height:22px;stroke-width:1.7}
 
-/* SECTIONS */
-.section { display: none; padding: 0 16px; }
-.section.active { display: block; }
+/* ── SECTIONS ── */
+.sec{display:none;padding:0 14px}
+.sec.on{display:block}
 
-/* HEADER */
-.page-header { padding: 20px 16px 12px; }
-.trip-title { font-size: 22px; font-weight: 700; letter-spacing: -.5px; color: var(--text); }
-.trip-subtitle { font-size: 13px; color: var(--text2); margin-top: 4px; display: flex; gap: 8px; flex-wrap: wrap; }
-.pill { background: var(--surface2); border-radius: 20px; padding: 2px 9px; font-size: 12px; color: var(--text2); }
-.pill.accent { background: var(--accent-bg); color: var(--accent); }
+/* ── HERO ── */
+.hero{padding:18px 14px 10px}
+.hero-title{font-size:21px;font-weight:750;letter-spacing:-.4px}
+.hero-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+.pill{background:var(--surface2);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--text2)}
+.pill.hi{background:var(--accent-bg);color:var(--accent)}
 
-/* STAT CARDS */
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 16px 16px; }
-.stat-card { background: var(--surface); border-radius: var(--radius-sm); padding: 12px; border: .5px solid var(--border); }
-.stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 4px; }
-.stat-value { font-size: 18px; font-weight: 700; color: var(--text); }
-.stat-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+/* ── STAT ROW ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 14px 14px}
+.sc{background:var(--surface);border-radius:var(--r-sm);padding:10px 11px;border:.5px solid var(--border)}
+.sc-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.sc-v{font-size:18px;font-weight:700;color:var(--text)}
+.sc-s{font-size:10px;color:var(--text3);margin-top:1px}
 
-/* DAY BLOCKS */
-.day-block { margin-bottom: 20px; }
-.day-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.day-num { background: var(--text); color: white; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; letter-spacing: .3px; }
-.day-info { flex: 1; }
-.day-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.day-date { font-size: 11px; color: var(--text3); margin-top: 1px; }
+/* ── DAY BLOCK ── */
+.day{margin-bottom:18px}
+.day-head{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.day-num{background:var(--text);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.3px}
+.day-info-name{font-size:14px;font-weight:650;color:var(--text)}
+.day-info-date{font-size:11px;color:var(--text3);margin-top:1px}
 
-/* TIMELINE */
-.timeline { position: relative; padding-left: 20px; }
-.timeline::before { content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 1px; background: var(--border2); }
-.ev-wrap { position: relative; margin-bottom: 7px; }
-.ev-dot { position: absolute; left: -16px; top: 13px; width: 8px; height: 8px; border-radius: 50%; background: var(--border2); border: 2px solid var(--bg); transition: background .2s; }
-.ev-dot.flight, .ev-dot.transport { background: var(--purple); }
-.ev-dot.hotel { background: var(--accent); }
-.ev-dot.food { background: var(--amber); }
-.ev-dot.sight { background: var(--green); }
-.ev-dot.event { background: var(--pink); }
-.ev-dot.tbd { background: var(--tbd); border-style: dashed; }
-.ev-card { background: var(--surface); border: .5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; transition: border-color .15s; }
-.ev-card:active { opacity: .85; }
-.ev-card.tbd-card { background: var(--tbd-bg); border-color: var(--tbd); border-style: dashed; }
-.ev-card.open { border-color: var(--border2); }
-.ev-main { display: flex; align-items: center; gap: 8px; padding: 9px 11px; }
-.ev-time { font-size: 11px; color: var(--text3); min-width: 38px; flex-shrink: 0; }
-.ev-name { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; line-height: 1.3; }
-.ev-card.tbd-card .ev-name { color: var(--text2); }
-.ev-badge { font-size: 10px; padding: 2px 6px; border-radius: 20px; flex-shrink: 0; font-weight: 500; }
-.badge-flight, .badge-transport { background: var(--purple-bg); color: var(--purple); }
-.badge-hotel { background: var(--accent-bg); color: var(--accent); }
-.badge-food { background: var(--amber-bg); color: var(--amber); }
-.badge-sight { background: var(--green-bg); color: var(--green); }
-.badge-event { background: var(--pink-bg); color: var(--pink); }
-.badge-tbd { background: var(--surface2); color: var(--text3); border: .5px dashed var(--border2); }
-.ev-chevron { color: var(--text3); font-size: 14px; flex-shrink: 0; transition: transform .2s; }
-.ev-card.open .ev-chevron { transform: rotate(90deg); }
-.ev-body { display: none; padding: 0 11px 10px; border-top: .5px solid var(--border); margin-top: 0; }
-.ev-card.open .ev-body { display: block; }
-.ev-desc { font-size: 12px; color: var(--text2); line-height: 1.6; padding-top: 9px; }
-.map-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; font-size: 12px; background: var(--green-bg); color: var(--green); padding: 5px 10px; border-radius: 20px; text-decoration: none; font-weight: 500; }
-.note-area { width: 100%; margin-top: 9px; font-size: 12px; padding: 7px 9px; border: .5px solid var(--border2); border-radius: var(--radius-sm); resize: none; font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.5; }
-.note-area:focus { outline: none; border-color: var(--accent); }
+/* ── TIMELINE ── */
+.tl{position:relative;padding-left:20px}
+.tl::before{content:'';position:absolute;left:5px;top:10px;bottom:10px;width:1px;background:var(--border2)}
+.ev{position:relative;margin-bottom:6px}
+.ev-dot{position:absolute;left:-16px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--border2);border:2px solid var(--bg)}
+.ev-dot.flight,.ev-dot.transport{background:var(--purple)}
+.ev-dot.hotel{background:var(--accent)}
+.ev-dot.food{background:var(--amber)}
+.ev-dot.sight{background:var(--green)}
+.ev-dot.event{background:var(--pink)}
+.ev-dot.tbd{background:var(--tbd-border)}
 
-/* HOTEL PICKER */
-.hotel-picker { padding-top: 9px; }
-.hotel-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 7px; }
-.hotel-opt { border: 1px solid var(--border2); border-radius: var(--radius-sm); padding: 8px 9px; cursor: pointer; transition: all .15s; background: var(--surface); }
-.hotel-opt.chosen { border-color: var(--accent); border-width: 1.5px; background: var(--accent-bg); }
-.hotel-opt-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; line-height: 1.3; }
-.hotel-opt.chosen .hotel-opt-name { color: var(--accent); }
-.hotel-opt-sub { font-size: 10px; color: var(--text3); }
-.hotel-map { display: block; font-size: 11px; color: var(--accent); margin-top: 4px; text-decoration: none; }
-.hotel-status { font-size: 12px; font-weight: 500; }
-.hotel-status.ok { color: var(--green); }
-.hotel-status.warn { color: var(--red); }
+.ev-card{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r-sm);cursor:pointer;transition:border-color .15s;user-select:none}
+.ev-card.tbd{background:#faf8f4;border-color:var(--tbd-border);border-style:dashed}
+.ev-card.open{border-color:var(--border2)}
+.ev-top{display:flex;align-items:center;gap:7px;padding:9px 10px}
+.ev-time{font-size:11px;color:var(--text3);min-width:36px;flex-shrink:0}
+.ev-name{font-size:13px;font-weight:600;color:var(--text);flex:1;line-height:1.3}
+.ev-card.tbd .ev-name{color:var(--text2)}
+.ev-badge{font-size:10px;padding:2px 6px;border-radius:20px;flex-shrink:0;font-weight:500;white-space:nowrap}
+.b-flight,.b-transport{background:var(--purple-bg);color:var(--purple)}
+.b-hotel{background:var(--accent-bg);color:var(--accent)}
+.b-food{background:var(--amber-bg);color:var(--amber)}
+.b-sight{background:var(--green-bg);color:var(--green)}
+.b-event{background:var(--pink-bg);color:var(--pink)}
+.b-tbd{background:var(--surface2);color:var(--text3);border:.5px dashed var(--border2)}
+.ev-arr{font-size:13px;color:var(--text3);flex-shrink:0;transition:transform .18s;line-height:1}
+.ev-card.open .ev-arr{transform:rotate(90deg)}
 
-/* ADD EVENT */
-.add-ev-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text3); padding: 6px 2px; background: none; border: none; cursor: pointer; font-family: var(--font); margin-top: 2px; }
-.add-ev-btn:active { color: var(--text); }
-.add-form { background: var(--surface2); border-radius: var(--radius-sm); padding: 11px; margin-top: 6px; display: none; }
-.add-form.show { display: block; }
-.f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 7px; }
-.f-full { grid-column: span 2; }
-.f-in, .f-sel { width: 100%; font-size: 13px; padding: 7px 9px; border: .5px solid var(--border2); border-radius: var(--radius-sm); font-family: var(--font); background: var(--surface); color: var(--text); }
-.f-in:focus, .f-sel:focus { outline: none; border-color: var(--accent); }
-.f-actions { display: flex; gap: 7px; }
-.btn { font-size: 13px; padding: 7px 16px; border-radius: var(--radius-sm); border: .5px solid var(--border2); background: var(--surface); color: var(--text); cursor: pointer; font-family: var(--font); font-weight: 500; }
-.btn:active { opacity: .8; }
-.btn-primary { background: var(--text); color: white; border-color: transparent; }
+.ev-body{display:none;padding:0 10px 10px;border-top:.5px solid var(--border)}
+.ev-card.open .ev-body{display:block}
+.ev-desc{font-size:12px;color:var(--text2);line-height:1.65;padding-top:8px}
+.map-btn{display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;background:var(--green-bg);color:var(--green);padding:5px 10px;border-radius:20px;text-decoration:none;font-weight:600}
+.note-field{width:100%;margin-top:8px;font-size:12px;padding:7px 8px;border:.5px solid var(--border2);border-radius:var(--r-sm);resize:none;font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5}
+.note-field:focus{outline:none;border-color:var(--accent)}
 
-/* CHECKLIST */
-.check-group { background: var(--surface); border-radius: var(--radius); border: .5px solid var(--border); overflow: hidden; margin-bottom: 12px; }
-.check-group-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 14px 10px; border-bottom: .5px solid var(--border); }
-.check-group-title { font-size: 14px; font-weight: 600; color: var(--text); }
-.check-progress { font-size: 12px; color: var(--text3); font-weight: 500; }
-.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 14px; border-bottom: .5px solid var(--border); }
-.check-item:last-child { border-bottom: none; }
-.check-cb { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; cursor: pointer; accent-color: var(--accent); }
-.check-text { flex: 1; }
-.check-label { font-size: 13px; color: var(--text); line-height: 1.4; }
-.check-label.done { text-decoration: line-through; color: var(--text3); }
-.check-sub-text { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.check-add-row { display: flex; gap: 7px; padding: 9px 14px; }
-.check-add-in { flex: 1; font-size: 13px; padding: 6px 9px; border: .5px solid var(--border2); border-radius: var(--radius-sm); font-family: var(--font); background: var(--bg); color: var(--text); }
-.check-add-in:focus { outline: none; }
+/* ── HOTEL PICKER ── */
+.hotel-pick{padding-top:8px}
+.hotel-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.hopt{border:1px solid var(--border2);border-radius:var(--r-sm);padding:8px 9px;cursor:pointer;background:var(--surface);transition:all .15s}
+.hopt.on{border-color:var(--accent);border-width:1.5px;background:var(--accent-bg)}
+.hopt-name{font-size:12px;font-weight:650;color:var(--text);line-height:1.3;margin-bottom:2px}
+.hopt.on .hopt-name{color:var(--accent)}
+.hopt-sub{font-size:10px;color:var(--text3)}
+.hopt-map{display:block;font-size:11px;color:var(--accent);margin-top:4px;text-decoration:none}
+.hotel-status{font-size:12px;font-weight:600}
+.hotel-status.ok{color:var(--green)}
+.hotel-status.warn{color:var(--red)}
 
-/* BUDGET */
-.dashboard { background: var(--text); border-radius: var(--radius); padding: 16px; margin-bottom: 14px; color: white; }
-.dash-title { font-size: 11px; opacity: .6; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
-.dash-total { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 2px; }
-.dash-total-ntd { font-size: 13px; opacity: .6; margin-bottom: 14px; }
-.dash-cats { display: flex; gap: 6px; flex-wrap: wrap; }
-.dash-cat { background: rgba(255,255,255,.12); border-radius: 20px; padding: 3px 9px; font-size: 11px; }
-.dash-cat span { opacity: .7; font-size: 10px; }
+/* ── ADD EVENT INLINE ── */
+.add-ev-row{margin-top:8px}
+.add-ev-toggle{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-bg);border:1px dashed var(--accent);border-radius:var(--r-sm);cursor:pointer;font-family:var(--font);padding:10px;width:100%;margin-top:6px;transition:background .15s}
+.add-ev-toggle:active{background:#dce6ff}
+.add-ev-form{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r-sm);padding:11px;margin-top:6px;display:none}
+.add-ev-form.on{display:block}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px}
+.fg-full{grid-column:span 2}
+input.fi,select.fs{width:100%;font-size:13px;padding:8px 9px;border:.5px solid var(--border2);border-radius:var(--r-sm);font-family:var(--font);background:var(--bg);color:var(--text);-webkit-appearance:none}
+input.fi:focus,select.fs:focus{outline:none;border-color:var(--accent)}
+.fa{display:flex;gap:7px}
+.btn{font-size:13px;padding:8px 16px;border-radius:var(--r-sm);border:.5px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;font-family:var(--font);font-weight:600;transition:opacity .15s}
+.btn:active{opacity:.75}
+.btn-p{background:var(--text);color:#fff;border-color:transparent}
 
-.wallet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-.wallet-card { background: var(--surface); border: .5px solid var(--border); border-radius: var(--radius-sm); padding: 11px 12px; }
-.wallet-name { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
-.wallet-bal { font-size: 17px; font-weight: 700; color: var(--text); }
-.wallet-bal2 { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.wallet-in-row { display: flex; align-items: center; gap: 5px; margin-top: 7px; }
-.wallet-in { flex: 1; font-size: 12px; padding: 4px 7px; border: .5px solid var(--border2); border-radius: 6px; font-family: var(--font); background: var(--bg); color: var(--text); }
-.wallet-in:focus { outline: none; }
-.wallet-unit { font-size: 11px; color: var(--text3); }
+/* ── CHECKLIST ── */
+.cg{background:var(--surface);border-radius:var(--r);border:.5px solid var(--border);overflow:hidden;margin-bottom:11px}
+.cg-head{display:flex;align-items:center;justify-content:space-between;padding:12px 13px 9px;border-bottom:.5px solid var(--border)}
+.cg-title{font-size:13px;font-weight:650;color:var(--text)}
+.cg-prog{font-size:12px;color:var(--text3)}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:8px 13px;border-bottom:.5px solid var(--border)}
+.ci:last-of-type{border-bottom:none}
+.ci-cb{width:16px;height:16px;flex-shrink:0;margin-top:1px;cursor:pointer;accent-color:var(--accent)}
+.ci-text{flex:1}
+.ci-label{font-size:13px;color:var(--text);line-height:1.4}
+.ci-label.done{text-decoration:line-through;color:var(--text3)}
+.ci-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.ci-add{display:flex;gap:7px;padding:9px 13px}
+.ci-add-in{flex:1;font-size:13px;padding:7px 9px;border:.5px solid var(--border2);border-radius:var(--r-sm);font-family:var(--font);background:var(--bg);color:var(--text)}
+.ci-add-in:focus{outline:none}
 
-.budget-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.budget-hd-title { font-size: 14px; font-weight: 600; color: var(--text); }
-.budget-actions { display: flex; gap: 7px; }
-.scan-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; background: var(--amber-bg); color: var(--amber); padding: 6px 12px; border-radius: 20px; border: .5px solid var(--amber); cursor: pointer; font-family: var(--font); font-weight: 600; }
+/* ── BUDGET DASHBOARD ── */
+.bboard{background:var(--text);color:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px}
+.bboard-label{font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.bboard-jpy{font-size:34px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.bboard-ntd{font-size:13px;opacity:.55;margin-top:3px;margin-bottom:12px}
+.bboard-cats{display:flex;gap:5px;flex-wrap:wrap}
+.bboard-cat{background:rgba(255,255,255,.13);border-radius:20px;padding:3px 9px;font-size:11px}
+.bboard-cat em{opacity:.6;font-style:normal}
 
-.exp-card { background: var(--surface); border: .5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 7px; }
-.exp-row { display: flex; align-items: center; gap: 9px; padding: 10px 12px; }
-.exp-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
-.exp-mid { flex: 1; min-width: 0; }
-.exp-name-row { display: flex; align-items: center; gap: 6px; }
-.exp-name { font-size: 13px; font-weight: 500; color: var(--text); }
-.cat-tag { font-size: 10px; padding: 1px 6px; border-radius: 20px; font-weight: 500; }
-.ct-食 { background: var(--amber-bg); color: var(--amber); }
-.ct-樂 { background: var(--pink-bg); color: var(--pink); }
-.ct-住 { background: var(--accent-bg); color: var(--accent); }
-.ct-行 { background: var(--purple-bg); color: var(--purple); }
-.ct-必須 { background: var(--red-bg); color: var(--red); }
-.ct-用品 { background: var(--green-bg); color: var(--green); }
-.ct-禮 { background: var(--surface2); color: var(--text2); }
-.exp-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.exp-amts { text-align: right; flex-shrink: 0; }
-.exp-jpy { font-size: 13px; font-weight: 700; color: var(--text); }
-.exp-ntd { font-size: 10px; color: var(--text3); }
-.exp-del { background: none; border: none; color: var(--text3); font-size: 18px; cursor: pointer; padding: 0 0 0 4px; flex-shrink: 0; line-height: 1; }
+/* ── WALLETS ── */
+.wallets{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.wcard{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r-sm);padding:10px 11px}
+.wcard-name{font-size:10px;color:var(--text3);margin-bottom:3px}
+.wcard-bal{font-size:16px;font-weight:700;color:var(--text)}
+.wcard-bal2{font-size:10px;color:var(--text3);margin-top:2px}
+.wcard-in-row{display:flex;align-items:center;gap:4px;margin-top:6px}
+.wcard-in{flex:1;font-size:12px;padding:4px 7px;border:.5px solid var(--border2);border-radius:6px;font-family:var(--font);background:var(--bg);color:var(--text)}
+.wcard-in:focus{outline:none}
+.wcard-unit{font-size:10px;color:var(--text3)}
 
-.total-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 12px 14px; background: var(--surface); border-radius: var(--radius-sm); border: .5px solid var(--border); margin-top: 4px; }
-.total-label { font-size: 13px; color: var(--text2); font-weight: 500; }
-.total-amts { text-align: right; }
-.total-jpy { font-size: 16px; font-weight: 800; color: var(--text); }
-.total-ntd { font-size: 11px; color: var(--text3); }
+/* ── EXPENSE LIST ── */
+.exp-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.exp-hd-title{font-size:14px;font-weight:650;color:var(--text)}
+.scan-btn{display:flex;align-items:center;gap:4px;font-size:12px;background:var(--amber-bg);color:var(--amber);padding:6px 11px;border-radius:20px;border:.5px solid var(--amber);cursor:pointer;font-family:var(--font);font-weight:600}
 
-/* ADD EXP FORM */
-.add-exp-form { background: var(--surface); border: .5px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; display: none; }
-.add-exp-form.show { display: block; }
-.form-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 11px; }
-.who-row { display: flex; gap: 7px; margin-bottom: 10px; }
-.who-btn { flex: 1; padding: 7px; border-radius: var(--radius-sm); border: .5px solid var(--border2); background: var(--surface2); font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font); transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
-.who-btn.selected { border-width: 1.5px; }
+.ecard{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r-sm);margin-bottom:6px;overflow:hidden}
+.erow{display:flex;align-items:center;gap:8px;padding:9px 11px}
+.eavatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.emid{flex:1;min-width:0}
+.ename{font-size:13px;font-weight:500;color:var(--text)}
+.emeta{font-size:11px;color:var(--text3);margin-top:2px;display:flex;align-items:center;gap:5px}
+.ctag{font-size:10px;padding:1px 6px;border-radius:20px;font-weight:600}
+.ct-食{background:var(--amber-bg);color:var(--amber)}
+.ct-樂{background:var(--pink-bg);color:var(--pink)}
+.ct-住{background:var(--accent-bg);color:var(--accent)}
+.ct-行{background:var(--purple-bg);color:var(--purple)}
+.ct-必須{background:var(--red-bg);color:var(--red)}
+.ct-用品{background:var(--green-bg);color:var(--green)}
+.ct-禮{background:var(--surface2);color:var(--text2)}
+.eamts{text-align:right;flex-shrink:0}
+.ejpy{font-size:13px;font-weight:700;color:var(--text)}
+.entd{font-size:10px;color:var(--text3)}
+.edel{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:0 0 0 3px;line-height:1;flex-shrink:0}
 
-/* SCAN MODAL */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200; display: none; align-items: flex-end; justify-content: center; }
-.modal-overlay.show { display: flex; }
-.modal-sheet { background: var(--surface); border-radius: 20px 20px 0 0; width: 100%; max-width: 480px; padding: 20px 16px 32px; max-height: 85dvh; overflow-y: auto; }
-.modal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; margin: 0 auto 16px; }
-.modal-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
-.scan-area { border: 1.5px dashed var(--border2); border-radius: var(--radius); padding: 28px 16px; text-align: center; cursor: pointer; transition: border-color .15s; margin-bottom: 12px; }
-.scan-area:hover { border-color: var(--accent); }
-.scan-area-icon { font-size: 32px; margin-bottom: 8px; }
-.scan-area-text { font-size: 13px; color: var(--text2); }
-.scan-area-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-.scan-preview { width: 100%; border-radius: var(--radius-sm); margin-bottom: 12px; display: none; }
-.scan-result { background: var(--green-bg); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 12px; display: none; }
-.scan-result-title { font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 8px; }
-.scan-field { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-.scan-field-label { font-size: 12px; color: var(--text2); }
-.scan-field-val { font-size: 12px; font-weight: 600; color: var(--text); }
-.api-key-notice { background: var(--amber-bg); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 12px; color: var(--amber); margin-bottom: 10px; display: none; }
-#scan-file-input { display: none; }
+.total-bar{display:flex;justify-content:space-between;align-items:flex-end;padding:11px 13px;background:var(--surface);border-radius:var(--r-sm);border:.5px solid var(--border);margin-top:4px}
+.total-l{font-size:13px;color:var(--text2);font-weight:500}
+.total-jpy{font-size:16px;font-weight:800;color:var(--text)}
+.total-ntd{font-size:11px;color:var(--text3)}
+.empty-state{text-align:center;padding:32px 0;color:var(--text3);font-size:13px}
+.empty-icon{font-size:28px;margin-bottom:8px}
 
-/* EMPTY STATE */
-.empty { text-align: center; padding: 36px 16px; color: var(--text3); font-size: 13px; }
-.empty-icon { font-size: 32px; margin-bottom: 8px; }
+/* ── FAB (floating add button) ── */
+.fab{position:fixed;bottom:calc(var(--nav) + 14px);right:max(14px, calc((100vw - 480px)/2 + 14px));width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 16px rgba(26,92,255,.35);font-family:var(--font);transition:transform .15s}
+.fab:active{transform:scale(.92)}
+.fab.hidden{display:none}
 
-/* DIVIDER */
-.section-divider { height: .5px; background: var(--border); margin: 4px 0 14px; }
+/* ── SHEET (bottom modal) ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:0 16px 32px;max-height:90dvh;overflow-y:auto}
+.sheet-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 14px}
+.sheet-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:14px}
+
+/* ── WHO ROW ── */
+.who-row{display:flex;gap:7px;margin-bottom:12px}
+.who-btn{flex:1;padding:9px 6px;border-radius:var(--r-sm);border:1px solid var(--border2);background:var(--surface2);font-size:13px;font-weight:650;cursor:pointer;font-family:var(--font);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px;color:var(--text2)}
+.who-btn.on{border-width:1.5px}
+.who-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+
+/* ── QUICK EXPENSE SHEET ── */
+.qe-amt-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.qe-sym{font-size:22px;font-weight:700;color:var(--text2)}
+.qe-amt-in{flex:1;font-size:28px;font-weight:700;padding:8px 0;border:none;border-bottom:2px solid var(--border2);border-radius:0;background:transparent;color:var(--text);font-family:var(--font)}
+.qe-amt-in:focus{outline:none;border-bottom-color:var(--accent)}
+.qe-curr-toggle{font-size:12px;padding:6px 10px;border-radius:20px;border:.5px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;font-family:var(--font);font-weight:600;white-space:nowrap}
+.qe-curr-toggle.jpy{background:var(--purple-bg);color:var(--purple);border-color:var(--purple)}
+.qe-name-in{width:100%;font-size:15px;padding:10px 11px;border:.5px solid var(--border2);border-radius:var(--r-sm);font-family:var(--font);background:var(--bg);color:var(--text);margin-bottom:12px}
+.qe-name-in:focus{outline:none;border-color:var(--accent)}
+.cat-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cat-chip{font-size:12px;padding:6px 11px;border-radius:20px;border:.5px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;font-family:var(--font);font-weight:600;transition:all .15s}
+.cat-chip.on{border-width:1.5px}
+.qe-extras{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
+.qe-save{width:100%;font-size:15px;padding:13px;border-radius:var(--r-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;font-family:var(--font);font-weight:700}
+.qe-save:active{opacity:.85}
+
+/* ── SCAN SHEET ── */
+.scan-area{border:1.5px dashed var(--border2);border-radius:var(--r);padding:26px 16px;text-align:center;cursor:pointer;margin-bottom:12px}
+.scan-area:active{border-color:var(--accent)}
+.scan-icon{font-size:30px;margin-bottom:7px}
+.scan-hint{font-size:13px;color:var(--text2);margin-bottom:3px}
+.scan-hint2{font-size:11px;color:var(--text3)}
+.scan-preview{width:100%;border-radius:var(--r-sm);margin-bottom:12px;display:none}
+.scan-result{background:var(--green-bg);border-radius:var(--r-sm);padding:11px 12px;margin-bottom:12px;display:none}
+.sr-title{font-size:11px;color:var(--green);font-weight:700;margin-bottom:7px}
+.sr-row{display:flex;justify-content:space-between;margin-bottom:4px}
+.sr-l{font-size:12px;color:var(--text2)}
+.sr-v{font-size:12px;font-weight:700;color:var(--text)}
+.scan-loading{text-align:center;padding:16px;display:none;font-size:13px;color:var(--text2)}
+.api-box{background:var(--amber-bg);border-radius:var(--r-sm);padding:10px 11px;margin-bottom:12px;display:none}
+.api-box-label{font-size:11px;color:var(--amber);font-weight:600;margin-bottom:6px}
+.api-row{display:flex;gap:7px}
+.api-in{flex:1;font-size:12px;padding:7px 8px;border:.5px solid var(--amber);border-radius:var(--r-sm);font-family:var(--font);background:#fff;color:var(--text)}
+.api-in:focus{outline:none}
+.api-save-btn{font-size:12px;padding:7px 12px;border-radius:var(--r-sm);border:none;background:var(--amber);color:#fff;cursor:pointer;font-family:var(--font);font-weight:600}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- HEADER -->
-<div class="page-header">
-  <div class="trip-title">🇯🇵 大阪・神戶・名古屋</div>
-  <div class="trip-subtitle">
-    <span>11月4日 — 8日 · 2026</span>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">🇯🇵 大阪・神戶・名古屋</div>
+  <div class="hero-meta">
+    <span class="pill">11/4 — 11/8 · 2026</span>
     <span class="pill">花花 全程</span>
     <span class="pill">米 11/5起</span>
-    <span class="pill accent">YOASOBI 11/7 🎵</span>
+    <span class="pill hi">YOASOBI 11/7 🎵</span>
   </div>
 </div>
 
 <!-- STATS -->
-<div class="stats-row">
-  <div class="stat-card">
-    <div class="stat-label">旅行天數</div>
-    <div class="stat-value">5</div>
-    <div class="stat-sub">天</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">待辦未完</div>
-    <div class="stat-value" id="st-todo">—</div>
-    <div class="stat-sub">項</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">已記費用</div>
-    <div class="stat-value" id="st-paid">¥0</div>
-    <div class="stat-sub" id="st-paid-ntd">NT$0</div>
-  </div>
+<div class="stats">
+  <div class="sc"><div class="sc-l">旅行天數</div><div class="sc-v">5</div><div class="sc-s">天</div></div>
+  <div class="sc"><div class="sc-l">待辦未完</div><div class="sc-v" id="st-todo">—</div><div class="sc-s">項</div></div>
+  <div class="sc"><div class="sc-l">累積花費</div><div class="sc-v" id="st-jpy">¥0</div><div class="sc-s" id="st-ntd">NT$0</div></div>
 </div>
 
-<!-- ITINERARY SECTION -->
-<div id="sec-itinerary" class="section active">
-  <div id="days-root"></div>
-</div>
+<!-- ITINERARY -->
+<div id="sec-it" class="sec on"><div id="days-root"></div></div>
 
-<!-- CHECKLIST SECTION -->
-<div id="sec-checklist" class="section">
-  <div id="checks-root"></div>
-</div>
+<!-- CHECKLIST -->
+<div id="sec-ck" class="sec"><div id="checks-root"></div></div>
 
-<!-- BUDGET SECTION -->
-<div id="sec-budget" class="section">
-  <!-- Dashboard -->
-  <div class="dashboard" id="dashboard">
-    <div class="dash-title">旅費總覽</div>
-    <div class="dash-total" id="dash-jpy">¥0</div>
-    <div class="dash-total-ntd" id="dash-ntd">≈ NT$0</div>
-    <div class="dash-cats" id="dash-cats"></div>
+<!-- BUDGET -->
+<div id="sec-bu" class="sec">
+  <div class="bboard" id="bboard">
+    <div class="bboard-label">旅費總覽</div>
+    <div class="bboard-jpy" id="bj">¥0</div>
+    <div class="bboard-ntd" id="bn">≈ NT$0</div>
+    <div class="bboard-cats" id="bc"></div>
   </div>
-  <!-- Wallets -->
-  <div class="wallet-grid" id="wallets-root"></div>
-  <!-- Expense list -->
-  <div class="budget-hd">
-    <div class="budget-hd-title">支出明細</div>
-    <div class="budget-actions">
-      <button class="scan-btn" onclick="openScan()">📷 掃描收據</button>
-      <button class="btn btn-primary" onclick="toggleExpForm()">+ 手動</button>
-    </div>
-  </div>
-  <!-- Add expense form -->
-  <div class="add-exp-form" id="exp-form">
-    <div class="form-title">新增費用</div>
-    <div class="who-row" id="who-row"></div>
-    <div class="f-grid">
-      <input class="f-in f-full" id="ef-name" placeholder="費用名稱（如：一蘭拉麵）"/>
-      <input class="f-in" id="ef-amt" placeholder="金額" type="number"/>
-      <select class="f-sel" id="ef-curr">
-        <option value="JPY">¥ 日幣</option>
-        <option value="NTD">NT$ 台幣</option>
-      </select>
-      <select class="f-sel" id="ef-cat">
-        <option>食</option><option>樂</option><option>住</option>
-        <option>行</option><option>必須</option><option>用品</option><option>禮</option>
-      </select>
-      <select class="f-sel" id="ef-wallet">
-        <option>日幣現金</option><option>信用卡A</option><option>信用卡B</option><option>Suica</option>
-      </select>
-      <input class="f-in" id="ef-day" placeholder="第幾天" type="number" min="1" max="5"/>
-    </div>
-    <div class="f-actions">
-      <button class="btn btn-primary" onclick="addExp()">儲存</button>
-      <button class="btn" onclick="toggleExpForm()">取消</button>
-    </div>
+  <div class="wallets" id="wallets-root"></div>
+  <div class="exp-hd">
+    <span class="exp-hd-title">支出明細</span>
+    <button class="scan-btn" onclick="openScan()">📷 掃描收據</button>
   </div>
   <div id="exp-root"></div>
-  <div class="total-row" id="total-row" style="display:none">
-    <span class="total-label">總計</span>
-    <div class="total-amts">
-      <div class="total-jpy" id="total-jpy"></div>
-      <div class="total-ntd" id="total-ntd"></div>
-    </div>
+  <div id="total-bar" style="display:none" class="total-bar">
+    <span class="total-l">總計</span>
+    <div style="text-align:right"><div class="total-jpy" id="tj"></div><div class="total-ntd" id="tn"></div></div>
   </div>
 </div>
 
+</div>
+
+<!-- FAB -->
+<button class="fab" id="fab" onclick="openQE()">＋</button>
+
 <!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="nav-item active" onclick="sw('itinerary',this)" id="nav-itinerary">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    行程
+<nav class="bnav">
+  <button class="bnav-item on" id="nav-it" onclick="sw('it',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>行程
   </button>
-  <button class="nav-item" onclick="sw('checklist',this)" id="nav-checklist">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-    待辦
+  <button class="bnav-item" id="nav-ck" onclick="sw('ck',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>待辦
   </button>
-  <button class="nav-item" onclick="sw('budget',this)" id="nav-budget">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-    費用
+  <button class="bnav-item" id="nav-bu" onclick="sw('bu',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>費用
   </button>
 </nav>
 
-<!-- SCAN MODAL -->
-<div class="modal-overlay" id="scan-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📷 掃描日文收據</div>
-    <div class="api-key-notice" id="api-notice">請在設定中輸入 Anthropic API Key 以使用 AI 辨識功能</div>
-    <div class="scan-area" onclick="document.getElementById('scan-file-input').click()">
-      <div class="scan-area-icon">📄</div>
-      <div class="scan-area-text">點擊拍照或選取收據圖片</div>
-      <div class="scan-area-sub">支援 JPG、PNG · AI 自動辨識日文</div>
+<!-- QUICK EXPENSE SHEET -->
+<div class="overlay" id="qe-overlay" onclick="outsideClose(event,'qe-overlay')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">新增費用</div>
+    <div class="who-row" id="qe-who"></div>
+    <div class="qe-amt-row">
+      <span class="qe-sym" id="qe-sym">¥</span>
+      <input class="qe-amt-in" id="qe-amt" type="number" placeholder="0" inputmode="decimal"/>
+      <button class="qe-curr-toggle jpy" id="qe-curr-btn" onclick="toggleCurr()">¥ 日幣</button>
     </div>
-    <input type="file" id="scan-file-input" accept="image/*" capture="environment" onchange="handleScanFile(this)"/>
-    <img id="scan-preview" class="scan-preview"/>
+    <input class="qe-name-in" id="qe-name" placeholder="費用名稱（如：一蘭拉麵）"/>
+    <div class="cat-row" id="qe-cats"></div>
+    <div class="qe-extras">
+      <select class="fs" id="qe-wallet"><option>日幣現金</option><option>信用卡A</option><option>信用卡B</option><option>Suica</option></select>
+      <select class="fs" id="qe-day"><option value="1">第1天</option><option value="2">第2天</option><option value="3">第3天</option><option value="4">第4天</option><option value="5">第5天</option></select>
+    </div>
+    <button class="qe-save" onclick="saveQE()">儲存這筆</button>
+  </div>
+</div>
+
+<!-- SCAN SHEET -->
+<div class="overlay" id="scan-overlay" onclick="outsideClose(event,'scan-overlay')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">📷 掃描日文收據</div>
+    <div class="api-box" id="api-box">
+      <div class="api-box-label">設定 Anthropic API Key（AI辨識用）</div>
+      <div class="api-row">
+        <input class="api-in" id="api-in" type="password" placeholder="sk-ant-..."/>
+        <button class="api-save-btn" onclick="saveKey()">儲存</button>
+      </div>
+    </div>
+    <div class="scan-area" onclick="document.getElementById('scan-file').click()">
+      <div class="scan-icon">📄</div>
+      <div class="scan-hint">點擊拍照或選取收據圖片</div>
+      <div class="scan-hint2">AI 自動辨識日文，翻譯成中文並填入</div>
+    </div>
+    <input type="file" id="scan-file" accept="image/*" capture="environment" style="display:none" onchange="handleScan(this)"/>
+    <img id="scan-prev" class="scan-preview"/>
+    <div class="scan-loading" id="scan-loading">🤖 AI 辨識中，請稍候...</div>
     <div class="scan-result" id="scan-result">
-      <div class="scan-result-title">✓ 辨識結果（可手動修改後儲存）</div>
-      <div class="scan-field"><span class="scan-field-label">店名</span><span class="scan-field-val" id="sr-shop">—</span></div>
-      <div class="scan-field"><span class="scan-field-label">金額</span><span class="scan-field-val" id="sr-amt">—</span></div>
-      <div class="scan-field"><span class="scan-field-label">類別</span><span class="scan-field-val" id="sr-cat">—</span></div>
+      <div class="sr-title">✓ 辨識完成，確認後儲存</div>
+      <div class="sr-row"><span class="sr-l">店名</span><span class="sr-v" id="sr-shop">—</span></div>
+      <div class="sr-row"><span class="sr-l">金額</span><span class="sr-v" id="sr-amt">—</span></div>
+      <div class="sr-row"><span class="sr-l">類別</span><span class="sr-v" id="sr-cat">—</span></div>
     </div>
-    <div id="scan-loading" style="text-align:center;padding:14px;display:none;color:var(--text2);font-size:13px">AI 辨識中...</div>
-    <!-- Scan add form -->
-    <div id="scan-add-section" style="display:none">
-      <div class="who-row" id="scan-who-row"></div>
-      <div class="f-grid" style="margin-top:8px">
-        <input class="f-in f-full" id="sf-name" placeholder="店名／費用名稱"/>
-        <input class="f-in" id="sf-amt" placeholder="金額 ¥" type="number"/>
-        <select class="f-sel" id="sf-cat"><option>食</option><option>樂</option><option>住</option><option>行</option><option>必須</option><option>用品</option><option>禮</option></select>
-        <select class="f-sel" id="sf-wallet"><option>日幣現金</option><option>信用卡A</option><option>信用卡B</option><option>Suica</option></select>
-        <input class="f-in" id="sf-day" placeholder="第幾天" type="number" min="1" max="5"/>
+    <!-- reuse quick form -->
+    <div id="scan-form-wrap" style="display:none">
+      <div class="who-row" id="scan-who"></div>
+      <div class="qe-amt-row">
+        <span class="qe-sym">¥</span>
+        <input class="qe-amt-in" id="sf-amt" type="number" placeholder="0" inputmode="decimal"/>
       </div>
-      <div class="f-actions">
-        <button class="btn btn-primary" onclick="saveScanExp()">儲存這筆</button>
-        <button class="btn" onclick="closeScan()">取消</button>
+      <input class="qe-name-in" id="sf-name" placeholder="費用名稱"/>
+      <div class="cat-row" id="sf-cats"></div>
+      <div class="qe-extras">
+        <select class="fs" id="sf-wallet"><option>日幣現金</option><option>信用卡A</option><option>信用卡B</option><option>Suica</option></select>
+        <select class="fs" id="sf-day"><option value="1">第1天</option><option value="2">第2天</option><option value="3">第3天</option><option value="4">第4天</option><option value="5">第5天</option></select>
       </div>
+      <button class="qe-save" onclick="saveScan()">儲存這筆</button>
     </div>
-    <div style="display:flex;gap:8px;margin-top:4px" id="scan-close-row">
-      <button class="btn" style="flex:1" onclick="closeScan()">關閉</button>
-    </div>
-    <!-- API Key setting -->
-    <div style="margin-top:14px;padding-top:12px;border-top:.5px solid var(--border)">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Anthropic API Key（AI辨識用）</div>
-      <div style="display:flex;gap:7px">
-        <input class="f-in" id="api-key-input" type="password" placeholder="sk-ant-..." style="flex:1;font-size:12px"/>
-        <button class="btn btn-primary" onclick="saveApiKey()" style="font-size:12px;padding:7px 12px">儲存</button>
-      </div>
-    </div>
+    <button class="btn" style="width:100%;margin-top:8px" onclick="closeScan()">關閉</button>
   </div>
 </div>
 
 <script>
-const JPY_NTD = 0.218;
-const NTD_JPY = 1 / JPY_NTD;
-
-const travelers = [
-  { id: 'me', name: '我', color: '#2b5ce6', bg: '#eef1fd' },
-  { id: 'huahua', name: '花花', color: '#b03060', bg: '#fdf0f5' },
-  { id: 'mi', name: '米', color: '#1a7a4a', bg: '#e8f5ee' },
+const R=0.218,NJ=1/R;
+const DAY_DATES=['11/4','11/5','11/6','11/7','11/8'];
+const travelers=[
+  {id:'me',name:'我',color:'#1a5cff',bg:'#edf1ff'},
+  {id:'huahua',name:'花花',color:'#ad2f5e',bg:'#fceef4'},
+  {id:'mi',name:'米',color:'#187a45',bg:'#e7f4ed'},
+];
+const CATS=['食','樂','住','行','必須','用品','禮'];
+const nagoyaHotels=[
+  {id:'jal',name:'名古屋錦日航都市飯店',sub:'Hotel JAL City Nishiki',map:'https://maps.app.goo.gl/LHUMhNZMPtwo6uBR7'},
+  {id:'meitetsu',name:'名鐵格蘭得飯店',sub:'Meitetsu Grand Hotel',map:'https://goo.gl/maps/6U7GpWmuKUx'},
 ];
 
-let selectedWho = 'me';
-let scanSelectedWho = 'me';
-let apiKey = localStorage.getItem('anthropic_key') || '';
-let expenses = JSON.parse(localStorage.getItem('trip_expenses') || '[]');
-let hotelChoice = localStorage.getItem('hotel_choice') || null;
-let notes = JSON.parse(localStorage.getItem('trip_notes') || '{}');
-let checks = JSON.parse(localStorage.getItem('trip_checks') || 'null');
-let walletBals = JSON.parse(localStorage.getItem('wallet_bals') || '{}');
+// state
+let apiKey=localStorage.getItem('ak')||'';
+let expenses=JSON.parse(localStorage.getItem('exps')||'[]');
+let hotelChoice=localStorage.getItem('hchoice')||'';
+let notes=JSON.parse(localStorage.getItem('notes')||'{}');
+let checkState=JSON.parse(localStorage.getItem('cks')||'null')||{};
+let walletBals=JSON.parse(localStorage.getItem('wbals')||'{}');
+let addedItems=JSON.parse(localStorage.getItem('addevs')||'{}');
+let qeWho='me', scanWho='me', qeCurr='JPY', qeCat='食', sfCat='食';
 
-const days = [
-  { day:1, label:'抵達大阪・神戶', date:'11/4（三）', travelers:'花花', items:[
-    { id:'d1-1', time:'待定', name:'台灣 → 關西國際空港 KIX', type:'flight', tbd:true, desc:'機票尚未購買。可從桃園或高雄出發，確認班次後填入。', map:'https://maps.google.com/?q=Kansai+International+Airport', },
-    { id:'d1-2', time:'入境後', name:'KIX → 神戶三宮', type:'transport', desc:'搭乘 Airport Limousine Bus 直達三宮，約1.5小時。費用約¥1,000。', map:'https://maps.google.com/?q=Kansai+International+Airport', },
-    { id:'d1-3', time:'傍晚', name:'與朋友會面・神戶', type:'sight', desc:'朋友住所：アドバンス神戸パーチェ 附近集合。', map:'https://www.google.com/maps/place/%E3%82%A2%E3%83%89%E3%83%90%E3%83%B3%E3%82%B9%E7%A5%9E%E6%88%B8%E3%83%91%E3%83%BC%E3%83%81%E3%82%A7/@34.6673349,135.1550703,17z', },
-    { id:'d1-4', time:'當晚', name:'神戶住宿・新幹線站附近', type:'hotel', tbd:true, hotelType:'single', desc:'建議選在新神戶站或新大阪站附近，方便隔天搭新幹線出發。', map:'', },
+const days=[
+  {day:1,label:'抵達大阪・神戶',date:'11/4（三）',trav:'花花',items:[
+    {id:'1a',time:'待定',name:'台灣 → 關西國際空港 KIX',type:'flight',tbd:true,desc:'機票尚未購買。可從桃園或高雄出發，確認班次後填入。',map:'https://maps.google.com/?q=Kansai+International+Airport'},
+    {id:'1b',time:'入境後',name:'KIX → 神戶三宮',type:'transport',desc:'Airport Limousine Bus 直達三宮，約1.5小時，費用約¥1,000。',map:'https://maps.google.com/?q=Kansai+International+Airport'},
+    {id:'1c',time:'傍晚',name:'與朋友會面・神戶',type:'sight',desc:'朋友住所：アドバンス神戸パーチェ 附近集合。',map:'https://www.google.com/maps/place/%E3%82%A2%E3%83%89%E3%83%90%E3%83%B3%E3%82%B9%E7%A5%9E%E6%88%B8%E3%83%91%E3%83%BC%E3%83%81%E3%82%A7/@34.6673349,135.1550703,17z'},
+    {id:'1d',time:'當晚',name:'神戶住宿・新幹線站附近',type:'hotel',tbd:true,hotelType:'single',desc:'建議選在新神戶站或新大阪站附近，方便隔天搭新幹線。',map:''},
   ]},
-  { day:2, label:'神戶 → 名古屋', date:'11/5（四）', travelers:'花花 + 米加入', items:[
-    { id:'d2-1', time:'上午', name:'新幹線・神戶 → 名古屋', type:'transport', desc:'東海道新幹線 Nozomi，從新神戶出發約1小時抵達名古屋。費用約¥6,000-8,000。', map:'https://maps.google.com/?q=新神戸駅', },
-    { id:'d2-2', time:'抵達後', name:'名古屋住宿・辦理入住', type:'hotel', tbd:true, hotelType:'choice', desc:'', map:'', },
-    { id:'d2-3', time:'下午', name:'名古屋探索（待規劃）', type:'sight', tbd:true, desc:'可考慮：大須商店街、名古屋城、榮商圈。確認後填入。', map:'', },
+  {day:2,label:'神戶 → 名古屋',date:'11/5（四）',trav:'花花 + 米加入',items:[
+    {id:'2a',time:'上午',name:'新幹線・神戶 → 名古屋',type:'transport',desc:'東海道新幹線 Nozomi，新神戶出發約1小時抵達。費用約¥6,000–8,000。',map:'https://maps.google.com/?q=新神戸駅'},
+    {id:'2b',time:'抵達後',name:'名古屋住宿・辦理入住',type:'hotel',tbd:true,hotelType:'choice',desc:'',map:''},
+    {id:'2c',time:'下午',name:'名古屋探索（待規劃）',type:'sight',tbd:true,desc:'可考慮：大須商店街、名古屋城、榮商圈。確認後填入。',map:''},
   ]},
-  { day:3, label:'名古屋探索', date:'11/6（五）', travelers:'花花 + 米', items:[
-    { id:'d3-1', time:'全天', name:'名古屋行程（待規劃）', type:'sight', tbd:true, desc:'景點、餐廳、購物等尚未確定。', map:'', },
+  {day:3,label:'名古屋探索',date:'11/6（五）',trav:'花花 + 米',items:[
+    {id:'3a',time:'全天',name:'名古屋行程（待規劃）',type:'sight',tbd:true,desc:'景點、餐廳、購物等尚未確定。',map:''},
   ]},
-  { day:4, label:'YOASOBI 演唱會', date:'11/7（六）', travelers:'花花 + 米', items:[
-    { id:'d4-1', time:'日間', name:'名古屋行程（待規劃）', type:'sight', tbd:true, desc:'留意演唱會前的交通時間，提早規劃路線。', map:'', },
-    { id:'d4-2', time:'演唱會', name:'YOASOBI Live 2026 🎤', type:'event', desc:'場地與時間待確認。建議預留充裕的交通時間提早抵達場館。', map:'https://maps.google.com/?q=名古屋+ライブ会場', },
+  {day:4,label:'YOASOBI 演唱會',date:'11/7（六）',trav:'花花 + 米',items:[
+    {id:'4a',time:'日間',name:'名古屋行程（待規劃）',type:'sight',tbd:true,desc:'留意演唱會前的交通時間。',map:''},
+    {id:'4b',time:'演唱會',name:'YOASOBI Live 2026 🎤',type:'event',desc:'場地與時間待確認。建議提早抵達場館。',map:'https://maps.google.com/?q=名古屋+ライブ会場'},
   ]},
-  { day:5, label:'返台', date:'11/8（日）', travelers:'花花 + 米', items:[
-    { id:'d5-1', time:'退房前', name:'退房・名古屋', type:'hotel', desc:'確認退房時間，整理行李。', map:'', },
-    { id:'d5-2', time:'待定', name:'名古屋 NGO → 台灣', type:'flight', tbd:true, desc:'機票尚未購買。中部國際空港（NGO）セントレア出發。', map:'https://maps.google.com/?q=中部国際空港+セントレア', },
-  ]},
-];
-
-const nagoyaHotels = [
-  { id:'jal', name:'名古屋錦日航都市飯店', sub:'Hotel JAL City Nishiki', map:'https://maps.app.goo.gl/LHUMhNZMPtwo6uBR7' },
-  { id:'meitetsu', name:'名鐵格蘭得飯店', sub:'Meitetsu Grand Hotel', map:'https://goo.gl/maps/6U7GpWmuKUx' },
-];
-
-const checkGroupsData = [
-  { id:'flights', title:'✈️ 機票', items:[
-    { text:'購買 台灣 → 大阪KIX 機票', sub:'11/4 出發' },
-    { text:'購買 名古屋NGO → 台灣 機票', sub:'11/8 返程' },
-  ]},
-  { id:'visa', title:'🗂 花花・日本簽證', items:[
-    { text:'確認所需文件清單', sub:'護照、照片、申請表、財力證明' },
-    { text:'確認護照有效期限', sub:'需6個月以上有效' },
-    { text:'準備近期證件照', sub:'白底2吋，近6個月內' },
-    { text:'準備存款/財力證明', sub:'銀行存款餘額證明書' },
-    { text:'準備在職/就讀證明' },
-    { text:'填寫簽證申請表', sub:'日本交流協會官網下載' },
-    { text:'前往日本交流協會遞件', sub:'台北或高雄辦事處' },
-    { text:'取回護照', sub:'核准後約5個工作天' },
-  ]},
-  { id:'hotel', title:'🏨 住宿', items:[
-    { text:'訂神戶住宿（11/4晚）', sub:'新神戶或新大阪站附近' },
-    { text:'確定名古屋住宿並訂房', sub:'JAL City Nishiki 或 Meitetsu Grand' },
-  ]},
-  { id:'concert', title:'🎟 演唱會', items:[
-    { text:'確認 YOASOBI 演唱會場地與時間', sub:'11/7 名古屋場' },
-    { text:'購買演唱會門票' },
-  ]},
-  { id:'prep', title:'💴 出發前準備', items:[
-    { text:'兌換日幣現金' },
-    { text:'Suica 確認餘額或加值' },
-    { text:'確認兩張信用卡海外刷卡功能' },
-    { text:'購買旅遊保險' },
+  {day:5,label:'返台',date:'11/8（日）',trav:'花花 + 米',items:[
+    {id:'5a',time:'退房前',name:'退房・名古屋',type:'hotel',desc:'確認退房時間，整理行李。',map:''},
+    {id:'5b',time:'待定',name:'名古屋 NGO → 台灣',type:'flight',tbd:true,desc:'機票尚未購買。中部國際空港（NGO）出發。',map:'https://maps.google.com/?q=中部国際空港+セントレア'},
   ]},
 ];
 
-// initialise checks
-let checkState;
-if (checks) {
-  checkState = checks;
-} else {
-  checkState = {};
-  checkGroupsData.forEach(g => { g.items.forEach((item, i) => { checkState[g.id+'-'+i] = false; }); });
-}
-
-const wallets = [
-  { id:'日幣現金', label:'日幣現金', unit:'¥', isJpy:true },
-  { id:'信用卡A', label:'信用卡 A', unit:'NT$', isJpy:false },
-  { id:'信用卡B', label:'信用卡 B', unit:'NT$', isJpy:false },
-  { id:'Suica', label:'Suica', unit:'¥', isJpy:true },
+const cgData=[
+  {id:'fl',title:'✈️ 機票',items:[
+    {t:'購買 台灣 → 大阪KIX 機票',s:'11/4 出發'},
+    {t:'購買 名古屋NGO → 台灣 機票',s:'11/8 返程'},
+  ]},
+  {id:'vi',title:'🗂 花花・日本簽證',items:[
+    {t:'確認所需文件清單',s:'護照、照片、申請表、財力證明'},
+    {t:'確認護照有效期限',s:'需6個月以上有效'},
+    {t:'準備近期證件照',s:'白底2吋，近6個月內'},
+    {t:'準備存款/財力證明',s:'銀行存款餘額證明書'},
+    {t:'準備在職/就讀證明'},
+    {t:'填寫簽證申請表',s:'日本交流協會官網下載'},
+    {t:'前往日本交流協會遞件',s:'台北或高雄辦事處'},
+    {t:'取回護照',s:'核准後約5個工作天'},
+  ]},
+  {id:'ho',title:'🏨 住宿',items:[
+    {t:'訂神戶住宿（11/4晚）',s:'新神戶或新大阪站附近'},
+    {t:'確定名古屋住宿並訂房',s:'JAL City Nishiki 或 Meitetsu Grand'},
+  ]},
+  {id:'co',title:'🎟 演唱會',items:[
+    {t:'確認 YOASOBI 演唱會場地與時間',s:'11/7 名古屋場'},
+    {t:'購買演唱會門票'},
+  ]},
+  {id:'pr',title:'💴 出發前準備',items:[
+    {t:'兌換日幣現金'},
+    {t:'Suica 確認餘額或加值'},
+    {t:'確認兩張信用卡海外刷卡功能'},
+    {t:'購買旅遊保險'},
+  ]},
 ];
 
-// ---- NAVIGATION ----
-function sw(name, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  btn.classList.add('active');
-  if (name === 'budget') renderBudget();
+// ── NAV ──
+function sw(name,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('on'));
+  document.getElementById('sec-'+name).classList.add('on');
+  btn.classList.add('on');
+  document.getElementById('fab').className='fab'+(name==='bu'?'':' hidden');
+  if(name==='bu'){renderBudget();}
 }
 
-// ---- ITINERARY ----
-function typeClass(ev) {
-  if (ev.tbd) return 'tbd';
-  return ev.type || 'sight';
+// ── ITINERARY ──
+function dot(ev){return ev.tbd?'tbd':(ev.type||'sight')}
+function badge(ev){
+  if(ev.tbd&&ev.type==='hotel')return['tbd','住宿待定'];
+  if(ev.tbd)return['tbd','待定'];
+  const m={flight:['flight','航班'],transport:['transport','交通'],hotel:['hotel','住宿'],food:['food','餐飲'],sight:['sight','景點'],event:['event','活動']};
+  return m[ev.type]||['sight','景點'];
 }
-function typeBadge(ev) {
-  if (ev.tbd && ev.type === 'hotel') return ['tbd', '住宿待定'];
-  if (ev.tbd) return ['tbd', '待定'];
-  const m = { flight:['flight','航班'], transport:['transport','交通'], hotel:['hotel','住宿'], food:['food','餐飲'], sight:['sight','景點'], event:['event','活動'] };
-  return m[ev.type] || ['sight','景點'];
+function hotelHTML(){
+  const ch=hotelChoice;
+  const sel=nagoyaHotels.find(h=>h.id===ch);
+  return`<div class="hotel-pick"><div class="hotel-opts">${nagoyaHotels.map(h=>`
+    <div class="hopt${ch===h.id?' on':''}" onclick="pickHotel('${h.id}')">
+      <div class="hopt-name">${h.name}</div>
+      <div class="hopt-sub">${h.sub}</div>
+      ${h.map?`<a class="hopt-map" href="${h.map}" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>`:''}
+    </div>`).join('')}</div>
+  <div class="hotel-status ${ch?'ok':'warn'}">${ch?'✓ 已選：'+sel.name:'⚠ 請點選其中一間'}</div></div>`;
 }
-
-function hotelChoiceHTML() {
-  const chosen = hotelChoice;
-  const chosenHotel = nagoyaHotels.find(h => h.id === chosen);
-  return `<div class="hotel-picker">
-    <div class="hotel-opts">
-      ${nagoyaHotels.map(h => `
-        <div class="hotel-opt${chosen===h.id?' chosen':''}" onclick="selectHotel('${h.id}')">
-          <div class="hotel-opt-name">${h.name}</div>
-          <div class="hotel-opt-sub">${h.sub}</div>
-          ${h.map ? `<a class="hotel-map" href="${h.map}" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>` : ''}
-        </div>`).join('')}
-    </div>
-    <div class="hotel-status ${chosen?'ok':'warn'}">${chosen ? '✓ 已選：'+chosenHotel.name : '⚠ 尚未選定，請點選'}</div>
-  </div>`;
+function pickHotel(id){
+  hotelChoice=id;localStorage.setItem('hchoice',id);
+  renderItinerary();renderChecklist();
 }
-
-function selectHotel(id) {
-  hotelChoice = id;
-  localStorage.setItem('hotel_choice', id);
-  renderItinerary();
-  renderChecklist();
-}
-
-function renderItinerary() {
-  const root = document.getElementById('days-root');
-  root.innerHTML = '';
-  const addedItems = JSON.parse(localStorage.getItem('added_items') || '{}');
-  days.forEach((d, di) => {
-    const allItems = [...d.items, ...(addedItems[di] || [])];
-    let itemsHTML = allItems.map((ev, ei) => {
-      const id = `ev-${di}-${ei}`;
-      const tc = typeClass(ev);
-      const [bc, bl] = typeBadge(ev);
-      const isHotelChoice = ev.hotelType === 'choice';
-      const isOpen = false;
-      const noteVal = notes[id] || '';
-      return `<div class="ev-wrap">
-        <div class="ev-dot ${tc}"></div>
-        <div class="ev-card${ev.tbd?' tbd-card':''}" id="${id}" onclick="toggleEv('${id}')">
-          <div class="ev-main">
+function renderItinerary(){
+  const root=document.getElementById('days-root');
+  root.innerHTML='';
+  days.forEach((d,di)=>{
+    const extra=addedItems[di]||[];
+    const allItems=[...d.items,...extra];
+    const itemsHTML=allItems.map((ev,ei)=>{
+      const eid=`ev-${di}-${ei}`;
+      const dc=dot(ev);
+      const[bc,bl]=badge(ev);
+      const isChoice=ev.hotelType==='choice';
+      const nv=notes[eid]||'';
+      return`<div class="ev">
+        <div class="ev-dot ${dc}"></div>
+        <div class="ev-card${ev.tbd?' tbd':''}" id="${eid}">
+          <div class="ev-top" onclick="toggleEv('${eid}')">
             <span class="ev-time">${ev.time}</span>
-            <span class="ev-name">${isHotelChoice ? '名古屋住宿・選定' : ev.name}</span>
-            <span class="ev-badge badge-${bc}">${bl}</span>
-            <span class="ev-chevron">›</span>
+            <span class="ev-name">${isChoice?'名古屋住宿・選定':ev.name}</span>
+            <span class="ev-badge b-${bc}">${bl}</span>
+            <span class="ev-arr">›</span>
           </div>
           <div class="ev-body">
-            ${isHotelChoice ? hotelChoiceHTML() : `<div class="ev-desc">${ev.desc}</div>`}
-            ${(!isHotelChoice && ev.map) ? `<a class="map-btn" href="${ev.map}" target="_blank">📍 在 Google Maps 開啟</a>` : ''}
-            <textarea class="note-area" rows="2" placeholder="筆記..." onchange="saveNote('${id}',this.value)">${noteVal}</textarea>
+            ${isChoice?hotelHTML():`<div class="ev-desc">${ev.desc}</div>`}
+            ${!isChoice&&ev.map?`<a class="map-btn" href="${ev.map}" target="_blank">📍 在 Google Maps 開啟</a>`:''}
+            <textarea class="note-field" rows="2" placeholder="筆記..." onchange="saveNote('${eid}',this.value)">${nv}</textarea>
           </div>
         </div>
       </div>`;
     }).join('');
-    root.innerHTML += `<div class="day-block">
+    root.innerHTML+=`<div class="day">
       <div class="day-head">
         <span class="day-num">DAY ${d.day}</span>
-        <div class="day-info">
-          <div class="day-name">${d.label}</div>
-          <div class="day-date">${d.date}${d.travelers ? ' · ' + d.travelers : ''}</div>
-        </div>
+        <div><div class="day-info-name">${d.label}</div><div class="day-info-date">${d.date}${d.trav?' · '+d.trav:''}</div></div>
       </div>
-      <div class="timeline">${itemsHTML}</div>
-      <button class="add-ev-btn" onclick="showAddEv(${di})">＋ 新增行程</button>
-      <div class="add-form" id="af-${di}">
-        <div class="f-grid">
-          <input class="f-in" id="at-${di}" placeholder="時間" />
-          <select class="f-sel" id="ay-${di}">
-            <option value="sight">景點</option><option value="food">餐飲</option>
-            <option value="transport">交通</option><option value="hotel">住宿</option>
-            <option value="event">活動</option><option value="flight">航班</option>
-          </select>
-          <input class="f-in f-full" id="an-${di}" placeholder="名稱"/>
-          <input class="f-in f-full" id="ad-${di}" placeholder="備註說明"/>
-          <input class="f-in f-full" id="am-${di}" placeholder="Google Maps 連結（選填）"/>
-        </div>
-        <div class="f-actions">
-          <button class="btn btn-primary" onclick="addEv(${di})">新增</button>
-          <button class="btn" onclick="hideAddEv(${di})">取消</button>
+      <div class="tl">${itemsHTML}</div>
+      ${(()=>{const dt=DAY_DATES[di];const dayExps=expenses.filter(e=>DAY_DATES[e.day-1]===dt||e.day===(di+1));const dayTot=dayExps.reduce((s,e)=>s+e.jpy,0);return dayTot>0?`<div style="display:flex;align-items:center;gap:6px;margin:6px 0 2px;padding:7px 10px;background:var(--surface);border:.5px solid var(--border);border-radius:var(--r-sm)"><span style="font-size:11px;color:var(--text3)">當日花費</span><span style="flex:1;height:.5px;background:var(--border)"></span><span style="font-size:12px;font-weight:700;color:var(--text)">¥${dayTot.toLocaleString()}</span><span style="font-size:11px;color:var(--text3)">NT$${Math.round(dayTot*R).toLocaleString()}</span></div>`:''})()}
+      <div class="add-ev-row">
+        <button class="add-ev-toggle" onclick="toggleAddEv(${di})">＋ 新增行程</button>
+        <div class="add-ev-form" id="aef-${di}">
+          <div class="fg">
+            <input class="fi" id="at-${di}" placeholder="時間（如 14:00）"/>
+            <select class="fs" id="ay-${di}"><option value="sight">景點</option><option value="food">餐飲</option><option value="transport">交通</option><option value="hotel">住宿</option><option value="event">活動</option><option value="flight">航班</option></select>
+            <input class="fi fg-full" id="an-${di}" placeholder="名稱（必填）"/>
+            <input class="fi fg-full" id="ad-${di}" placeholder="備註說明"/>
+            <input class="fi fg-full" id="am-${di}" placeholder="Google Maps 連結（選填）"/>
+          </div>
+          <div class="fa"><button class="btn btn-p" onclick="doAddEv(${di})">新增</button><button class="btn" onclick="toggleAddEv(${di})">取消</button></div>
         </div>
       </div>
     </div>`;
   });
   updateStats();
 }
-
-function toggleEv(id) {
-  const card = document.getElementById(id);
-  card.classList.toggle('open');
-}
-function saveNote(id, val) {
-  notes[id] = val;
-  localStorage.setItem('trip_notes', JSON.stringify(notes));
-}
-function showAddEv(di) { document.getElementById('af-'+di).classList.add('show'); }
-function hideAddEv(di) { document.getElementById('af-'+di).classList.remove('show'); }
-function addEv(di) {
-  const t = document.getElementById('at-'+di).value || '—';
-  const n = document.getElementById('an-'+di).value;
-  const y = document.getElementById('ay-'+di).value;
-  const d = document.getElementById('ad-'+di).value;
-  const m = document.getElementById('am-'+di).value;
-  if (!n) return;
-  const stored = JSON.parse(localStorage.getItem('added_items') || '{}');
-  if (!stored[di]) stored[di] = [];
-  stored[di].push({ time:t, name:n, type:y, desc:d, map:m });
-  localStorage.setItem('added_items', JSON.stringify(stored));
+function toggleEv(id){document.getElementById(id).classList.toggle('open');}
+function saveNote(id,v){notes[id]=v;localStorage.setItem('notes',JSON.stringify(notes));}
+function toggleAddEv(di){document.getElementById('aef-'+di).classList.toggle('on');}
+function doAddEv(di){
+  const n=document.getElementById('an-'+di).value.trim();
+  if(!n)return;
+  const item={time:document.getElementById('at-'+di).value||'—',name:n,type:document.getElementById('ay-'+di).value,desc:document.getElementById('ad-'+di).value,map:document.getElementById('am-'+di).value};
+  if(!addedItems[di])addedItems[di]=[];
+  addedItems[di].push(item);
+  localStorage.setItem('addevs',JSON.stringify(addedItems));
+  document.getElementById('at-'+di).value='';
+  document.getElementById('an-'+di).value='';
+  document.getElementById('ad-'+di).value='';
+  document.getElementById('am-'+di).value='';
   renderItinerary();
 }
 
-// ---- CHECKLIST ----
-function renderChecklist() {
-  const root = document.getElementById('checks-root');
-  root.innerHTML = '';
-  checkGroupsData.forEach((g, gi) => {
-    const total = g.items.length;
-    const done = g.items.filter((_, i) => checkState[g.id+'-'+i]).length;
-    const itemsHTML = g.items.map((item, i) => {
-      const key = g.id+'-'+i;
-      const isDone = !!checkState[key];
-      return `<div class="check-item">
-        <input type="checkbox" class="check-cb" ${isDone?'checked':''} onchange="toggleCheck('${key}',this.checked)"/>
-        <div class="check-text">
-          <div class="check-label${isDone?' done':''}" id="cl-${key}">${item.text}</div>
-          ${item.sub ? `<div class="check-sub-text">${item.sub}</div>` : ''}
+// ── CHECKLIST ──
+function renderChecklist(){
+  const root=document.getElementById('checks-root');
+  root.innerHTML='';
+  cgData.forEach(g=>{
+    const extra=JSON.parse(localStorage.getItem('ckadd-'+g.id)||'[]');
+    const allItems=[...g.items,...extra.map(t=>({t}))];
+    const total=allItems.length;
+    const done=allItems.filter((_,i)=>checkState[g.id+'-'+i]).length;
+    const itemsHTML=allItems.map((item,i)=>{
+      const k=g.id+'-'+i;
+      const d=!!checkState[k];
+      return`<div class="ci">
+        <input type="checkbox" class="ci-cb" ${d?'checked':''} onchange="toggleCK('${k}',this.checked)"/>
+        <div class="ci-text">
+          <div class="ci-label${d?' done':''}" id="cl-${k}">${item.t}</div>
+          ${item.s?`<div class="ci-sub">${item.s}</div>`:''}
         </div>
       </div>`;
     }).join('');
-    const addedChecks = JSON.parse(localStorage.getItem('added_checks_'+g.id) || '[]');
-    const addedHTML = addedChecks.map((text, i) => {
-      const key = g.id+'-added-'+i;
-      const isDone = !!checkState[key];
-      return `<div class="check-item">
-        <input type="checkbox" class="check-cb" ${isDone?'checked':''} onchange="toggleCheck('${key}',this.checked)"/>
-        <div class="check-text"><div class="check-label${isDone?' done':''}" id="cl-${key}">${text}</div></div>
-      </div>`;
-    }).join('');
-    root.innerHTML += `<div class="check-group">
-      <div class="check-group-head">
-        <span class="check-group-title">${g.title}</span>
-        <span class="check-progress">${done}/${total}</span>
-      </div>
-      ${itemsHTML}${addedHTML}
-      <div class="check-add-row">
-        <input class="check-add-in" id="ci-${g.id}" placeholder="新增待辦..."/>
-        <button class="btn btn-primary" onclick="addCheck('${g.id}')" style="font-size:12px;padding:6px 12px">新增</button>
+    root.innerHTML+=`<div class="cg">
+      <div class="cg-head"><span class="cg-title">${g.title}</span><span class="cg-prog">${done}/${total}</span></div>
+      ${itemsHTML}
+      <div class="ci-add">
+        <input class="ci-add-in" id="ci-${g.id}" placeholder="新增待辦..."/>
+        <button class="btn btn-p" onclick="addCK('${g.id}')" style="font-size:12px;padding:7px 12px">新增</button>
       </div>
     </div>`;
   });
   updateStats();
 }
-
-function toggleCheck(key, val) {
-  checkState[key] = val;
-  localStorage.setItem('trip_checks', JSON.stringify(checkState));
-  const lbl = document.getElementById('cl-'+key);
-  if (lbl) lbl.classList.toggle('done', val);
+function toggleCK(k,v){
+  checkState[k]=v;localStorage.setItem('cks',JSON.stringify(checkState));
+  const el=document.getElementById('cl-'+k);if(el)el.classList.toggle('done',v);
   updateStats();
 }
-function addCheck(gid) {
-  const inp = document.getElementById('ci-'+gid);
-  if (!inp.value.trim()) return;
-  const stored = JSON.parse(localStorage.getItem('added_checks_'+gid) || '[]');
-  stored.push(inp.value.trim());
-  localStorage.setItem('added_checks_'+gid, JSON.stringify(stored));
-  inp.value = '';
-  renderChecklist();
+function addCK(gid){
+  const inp=document.getElementById('ci-'+gid);
+  if(!inp.value.trim())return;
+  const arr=JSON.parse(localStorage.getItem('ckadd-'+gid)||'[]');
+  arr.push(inp.value.trim());
+  localStorage.setItem('ckadd-'+gid,JSON.stringify(arr));
+  inp.value='';renderChecklist();
 }
 
-// ---- BUDGET ----
-function renderBudget() {
-  renderWallets();
-  renderExpList();
-  renderDashboard();
-  renderWhoRow('who-row', 'selectedWho');
-  renderWhoRow('scan-who-row', 'scanSelectedWho');
+// ── BUDGET ──
+function renderBudget(){renderWallets();renderExpList();renderDash();}
+function renderDash(){
+  const tot=expenses.reduce((s,e)=>s+e.jpy,0);
+  document.getElementById('bj').textContent='¥'+tot.toLocaleString();
+  document.getElementById('bn').textContent='≈ NT$'+Math.round(tot*R).toLocaleString();
+  const cats={};expenses.forEach(e=>{cats[e.cat]=(cats[e.cat]||0)+e.jpy;});
+  document.getElementById('bc').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1])
+    .map(([c,a])=>`<div class="bboard-cat">${c} <em>¥${a.toLocaleString()}</em></div>`).join('');
 }
+function renderWallets(){
+  document.getElementById('wallets-root').innerHTML=
+    [{id:'日幣現金',label:'日幣現金',unit:'¥',jpy:true},{id:'信用卡A',label:'信用卡 A',unit:'NT$',jpy:false},
+     {id:'信用卡B',label:'信用卡 B',unit:'NT$',jpy:false},{id:'Suica',label:'Suica',unit:'¥',jpy:true}]
+    .map(w=>{
+      const b=parseFloat(walletBals[w.id]||0);
+      const b2=w.jpy?`≈ NT$${Math.round(b*R).toLocaleString()}`:`≈ ¥${Math.round(b*NJ).toLocaleString()}`;
+      return`<div class="wcard">
+        <div class="wcard-name">${w.label}</div>
+        <div class="wcard-bal">${w.unit}${b.toLocaleString()}</div>
+        <div class="wcard-bal2">${b2}</div>
+        <div class="wcard-in-row">
+          <input class="wcard-in" type="number" placeholder="設定餘額" value="${b||''}" onchange="setWal('${w.id}',this.value)"/>
+          <span class="wcard-unit">${w.unit}</span>
+        </div>
+      </div>`;
+    }).join('');
+}
+function setWal(id,v){walletBals[id]=parseFloat(v)||0;localStorage.setItem('wbals',JSON.stringify(walletBals));renderWallets();}
+function renderExpList(){
+  const root=document.getElementById('exp-root');
+  if(!expenses.length){root.innerHTML='<div class="empty-state"><div class="empty-icon">💴</div>還沒有費用記錄<br>點右下角 ＋ 快速新增</div>';document.getElementById('total-bar').style.display='none';return;}
+  root.innerHTML=expenses.map((e,i)=>{
+    const t=travelers.find(x=>x.id===e.who)||travelers[0];
+    return`<div class="ecard"><div class="erow">
+      <div class="eavatar" style="background:${t.bg};color:${t.color}">${t.name[0]}</div>
+      <div class="emid">
+        <div class="ename">${e.name}</div>
+        <div class="emeta"><span class="ctag ct-${e.cat}">${e.cat}</span>${DAY_DATES[e.day-1]||('第'+e.day+'天')} · ${e.wallet} · ${t.name}</div>
+      </div>
+      <div class="eamts"><div class="ejpy">¥${e.jpy.toLocaleString()}</div><div class="entd">NT$${e.ntd.toLocaleString()}</div></div>
+      <button class="edel" onclick="delExp(${i})">×</button>
+    </div></div>`;
+  }).join('');
+  const tj=expenses.reduce((s,e)=>s+e.jpy,0),tn=expenses.reduce((s,e)=>s+e.ntd,0);
+  document.getElementById('tj').textContent='¥'+tj.toLocaleString();
+  document.getElementById('tn').textContent='≈ NT$'+tn.toLocaleString();
+  document.getElementById('total-bar').style.display='flex';
+}
+function delExp(i){expenses.splice(i,1);localStorage.setItem('exps',JSON.stringify(expenses));renderExpList();renderDash();updateStats();}
 
-function renderWhoRow(rowId, stateVar) {
-  const row = document.getElementById(rowId);
-  if (!row) return;
-  row.innerHTML = travelers.map(t => `
-    <button class="who-btn${window[stateVar]===t.id?' selected':''}" 
-      style="${window[stateVar]===t.id?`border-color:${t.color};background:${t.bg};color:${t.color}`:'color:var(--text2)'}"
-      onclick="selectWho('${t.id}','${stateVar}','${rowId}')">
-      <span style="width:18px;height:18px;border-radius:50%;background:${t.bg};border:1.5px solid ${t.color};display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${t.color}">${t.name[0]}</span>
-      ${t.name}
+// ── QUICK EXPENSE ──
+function buildWhoRow(rowId,stateKey){
+  document.getElementById(rowId).innerHTML=travelers.map(t=>`
+    <button class="who-btn${window[stateKey]===t.id?' on':''}"
+      style="${window[stateKey]===t.id?`border-color:${t.color};background:${t.bg};color:${t.color}`:''}"
+      onclick="pickWho('${t.id}','${stateKey}','${rowId}')">
+      <span class="who-av" style="background:${t.bg};color:${t.color}">${t.name[0]}</span>${t.name}
     </button>`).join('');
 }
-
-function selectWho(id, stateVar, rowId) {
-  window[stateVar] = id;
-  renderWhoRow(rowId, stateVar);
+function pickWho(id,sk,rowId){window[sk]=id;buildWhoRow(rowId,sk);}
+function buildCatRow(rowId,stateKey){
+  document.getElementById(rowId).innerHTML=CATS.map(c=>`
+    <button class="cat-chip ct-${c}${window[stateKey]===c?' on':''}"
+      style="${window[stateKey]===c?'border-color:currentColor;opacity:1':'opacity:.7'}"
+      onclick="pickCat('${c}','${stateKey}','${rowId}')">${c}</button>`).join('');
 }
+function pickCat(c,sk,rowId){window[sk]=c;buildCatRow(rowId,sk);}
 
-function renderWallets() {
-  document.getElementById('wallets-root').innerHTML = wallets.map(w => {
-    const bal = parseFloat(walletBals[w.id] || 0);
-    const other = w.isJpy ? `≈ NT$${Math.round(bal*JPY_NTD).toLocaleString()}` : `≈ ¥${Math.round(bal*NTD_JPY).toLocaleString()}`;
-    return `<div class="wallet-card">
-      <div class="wallet-name">${w.label}</div>
-      <div class="wallet-bal">${w.unit}${bal.toLocaleString()}</div>
-      <div class="wallet-bal2">${other}</div>
-      <div class="wallet-in-row">
-        <input class="wallet-in" type="number" placeholder="設定餘額" value="${bal||''}" onchange="setWallet('${w.id}',this.value)"/>
-        <span class="wallet-unit">${w.unit}</span>
-      </div>
-    </div>`;
-  }).join('');
+let currIsJpy=true;
+function toggleCurr(){
+  currIsJpy=!currIsJpy;qeCurr=currIsJpy?'JPY':'NTD';
+  const btn=document.getElementById('qe-curr-btn');
+  btn.textContent=currIsJpy?'¥ 日幣':'NT$ 台幣';
+  btn.className='qe-curr-toggle'+(currIsJpy?' jpy':'');
+  document.getElementById('qe-sym').textContent=currIsJpy?'¥':'NT$';
 }
+function openQE(){
+  buildWhoRow('qe-who','qeWho');buildCatRow('qe-cats','qeCat');
+  document.getElementById('qe-amt').value='';document.getElementById('qe-name').value='';
+  document.getElementById('qe-overlay').classList.add('on');
+  setTimeout(()=>document.getElementById('qe-amt').focus(),100);
+}
+function closeQE(){document.getElementById('qe-overlay').classList.remove('on');}
+function saveQE(){
+  const name=document.getElementById('qe-name').value.trim();
+  const amt=parseFloat(document.getElementById('qe-amt').value)||0;
+  const wallet=document.getElementById('qe-wallet').value;
+  const day=parseInt(document.getElementById('qe-day').value)||1;
+  if(!name||!amt)return;
+  const jpy=currIsJpy?amt:Math.round(amt*NJ);
+  const ntd=currIsJpy?Math.round(amt*R):amt;
+  expenses.push({name,jpy,ntd,cat:qeCat,wallet,day,who:qeWho});
+  localStorage.setItem('exps',JSON.stringify(expenses));
+  closeQE();renderExpList();renderDash();updateStats();
+}
+function outsideClose(e,id){if(e.target.id===id)document.getElementById(id).classList.remove('on');}
 
-function setWallet(id, val) {
-  walletBals[id] = parseFloat(val) || 0;
-  localStorage.setItem('wallet_bals', JSON.stringify(walletBals));
-  renderWallets();
+// ── SCAN ──
+function openScan(){
+  document.getElementById('api-box').style.display=apiKey?'none':'block';
+  document.getElementById('api-in').value=apiKey;
+  document.getElementById('scan-prev').style.display='none';
+  document.getElementById('scan-result').style.display='none';
+  document.getElementById('scan-form-wrap').style.display='none';
+  document.getElementById('scan-loading').style.display='none';
+  buildWhoRow('scan-who','scanWho');buildCatRow('sf-cats','sfCat');
+  document.getElementById('scan-overlay').classList.add('on');
 }
-
-function renderDashboard() {
-  const totJpy = expenses.reduce((s,e) => s + e.jpy, 0);
-  document.getElementById('dash-jpy').textContent = '¥' + totJpy.toLocaleString();
-  document.getElementById('dash-ntd').textContent = '≈ NT$' + Math.round(totJpy*JPY_NTD).toLocaleString();
-  const cats = {};
-  expenses.forEach(e => { cats[e.cat] = (cats[e.cat]||0) + e.jpy; });
-  document.getElementById('dash-cats').innerHTML = Object.entries(cats)
-    .sort((a,b) => b[1]-a[1])
-    .map(([cat, amt]) => `<div class="dash-cat">${cat} <span>¥${amt.toLocaleString()}</span></div>`)
-    .join('');
+function closeScan(){document.getElementById('scan-overlay').classList.remove('on');}
+function saveKey(){
+  apiKey=document.getElementById('api-in').value.trim();
+  localStorage.setItem('ak',apiKey);
+  document.getElementById('api-box').style.display=apiKey?'none':'block';
 }
-
-function toggleExpForm() { document.getElementById('exp-form').classList.toggle('show'); }
-
-function addExp(opts) {
-  const name = opts ? opts.name : document.getElementById('ef-name').value;
-  const amt = opts ? opts.amt : parseFloat(document.getElementById('ef-amt').value) || 0;
-  const curr = opts ? opts.curr : document.getElementById('ef-curr').value;
-  const cat = opts ? opts.cat : document.getElementById('ef-cat').value;
-  const wallet = opts ? opts.wallet : document.getElementById('ef-wallet').value;
-  const day = opts ? opts.day : parseInt(document.getElementById('ef-day').value) || 1;
-  const who = opts ? opts.who : selectedWho;
-  if (!name) return;
-  const jpy = curr === 'JPY' ? amt : Math.round(amt * NTD_JPY);
-  const ntd = curr === 'NTD' ? amt : Math.round(amt * JPY_NTD);
-  expenses.push({ name, jpy, ntd, cat, wallet, day, who });
-  localStorage.setItem('trip_expenses', JSON.stringify(expenses));
-  if (!opts) {
-    document.getElementById('ef-name').value = '';
-    document.getElementById('ef-amt').value = '';
-    document.getElementById('exp-form').classList.remove('show');
-  }
-  renderExpList();
-  renderDashboard();
-  updateStats();
-}
-
-function removeExp(i) {
-  expenses.splice(i, 1);
-  localStorage.setItem('trip_expenses', JSON.stringify(expenses));
-  renderExpList();
-  renderDashboard();
-  updateStats();
-}
-
-function renderExpList() {
-  const root = document.getElementById('exp-root');
-  if (!expenses.length) {
-    root.innerHTML = '<div class="empty"><div class="empty-icon">💴</div>還沒有費用記錄</div>';
-    document.getElementById('total-row').style.display = 'none';
-    return;
-  }
-  root.innerHTML = expenses.map((e, i) => {
-    const t = travelers.find(t => t.id === e.who) || travelers[0];
-    return `<div class="exp-card">
-      <div class="exp-row">
-        <div class="exp-avatar" style="background:${t.bg};color:${t.color}">${t.name[0]}</div>
-        <div class="exp-mid">
-          <div class="exp-name-row">
-            <span class="exp-name">${e.name}</span>
-            <span class="cat-tag ct-${e.cat}">${e.cat}</span>
-          </div>
-          <div class="exp-meta">第${e.day}天 · ${e.wallet} · ${t.name}</div>
-        </div>
-        <div class="exp-amts">
-          <div class="exp-jpy">¥${e.jpy.toLocaleString()}</div>
-          <div class="exp-ntd">NT$${e.ntd.toLocaleString()}</div>
-        </div>
-        <button class="exp-del" onclick="removeExp(${i})">×</button>
-      </div>
-    </div>`;
-  }).join('');
-  const totJpy = expenses.reduce((s,e) => s+e.jpy, 0);
-  const totNtd = expenses.reduce((s,e) => s+e.ntd, 0);
-  document.getElementById('total-jpy').textContent = '¥' + totJpy.toLocaleString();
-  document.getElementById('total-ntd').textContent = '≈ NT$' + totNtd.toLocaleString();
-  document.getElementById('total-row').style.display = 'flex';
-}
-
-// ---- STATS ----
-function updateStats() {
-  const todo = checkGroupsData.reduce((s,g) => {
-    const added = JSON.parse(localStorage.getItem('added_checks_'+g.id)||'[]');
-    const total = g.items.length + added.length;
-    const done = g.items.filter((_,i)=>checkState[g.id+'-'+i]).length +
-                 added.filter((_,i)=>checkState[g.id+'-added-'+i]).length;
-    return s + (total - done);
-  }, 0);
-  document.getElementById('st-todo').textContent = todo;
-  const totJpy = expenses.reduce((s,e)=>s+e.jpy,0);
-  document.getElementById('st-paid').textContent = '¥' + totJpy.toLocaleString();
-  document.getElementById('st-paid-ntd').textContent = 'NT$' + Math.round(totJpy*JPY_NTD).toLocaleString();
-}
-
-// ---- SCAN ----
-function openScan() {
-  document.getElementById('scan-modal').classList.add('show');
-  document.getElementById('api-key-input').value = apiKey;
-  if (!apiKey) document.getElementById('api-notice').style.display = 'block';
-  renderWhoRow('scan-who-row', 'scanSelectedWho');
-}
-function closeScan() {
-  document.getElementById('scan-modal').classList.remove('show');
-  document.getElementById('scan-preview').style.display = 'none';
-  document.getElementById('scan-result').style.display = 'none';
-  document.getElementById('scan-add-section').style.display = 'none';
-  document.getElementById('scan-close-row').style.display = 'flex';
-  document.getElementById('scan-loading').style.display = 'none';
-}
-function saveApiKey() {
-  apiKey = document.getElementById('api-key-input').value.trim();
-  localStorage.setItem('anthropic_key', apiKey);
-  document.getElementById('api-notice').style.display = apiKey ? 'none' : 'block';
-  alert(apiKey ? 'API Key 已儲存 ✓' : '請輸入有效的 API Key');
-}
-
-async function handleScanFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = async (e) => {
-    const dataUrl = e.target.result;
-    const preview = document.getElementById('scan-preview');
-    preview.src = dataUrl;
-    preview.style.display = 'block';
-    if (!apiKey) {
-      document.getElementById('api-notice').style.display = 'block';
-      prefillScanForm('', '', '食');
-      return;
+async function handleScan(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    const prev=document.getElementById('scan-prev');prev.src=e.target.result;prev.style.display='block';
+    document.getElementById('scan-form-wrap').style.display='none';
+    document.getElementById('scan-result').style.display='none';
+    if(apiKey){
+      document.getElementById('scan-loading').style.display='block';
+      try{
+        const b64=e.target.result.split(',')[1];
+        const res=await fetch('https://api.anthropic.com/v1/messages',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
+          body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,
+            messages:[{role:'user',content:[
+              {type:'image',source:{type:'base64',media_type:file.type||'image/jpeg',data:b64}},
+              {type:'text',text:'這是日本收據。只回JSON不要其他文字：{"shop":"店名翻譯成繁體中文","amount":金額數字,"category":"食或樂或住或行或用品或禮"}'}
+            ]}]})
+        });
+        const data=await res.json();
+        const txt=data.content?.[0]?.text||'{}';
+        const p=JSON.parse(txt.replace(/```json|```/g,'').trim());
+        document.getElementById('sr-shop').textContent=p.shop||'—';
+        document.getElementById('sr-amt').textContent=p.amount?'¥'+p.amount:'—';
+        document.getElementById('sr-cat').textContent=p.category||'食';
+        document.getElementById('scan-result').style.display='block';
+        document.getElementById('sf-amt').value=p.amount||'';
+        document.getElementById('sf-name').value=p.shop||'';
+        sfCat=p.category||'食';buildCatRow('sf-cats','sfCat');
+      }catch(err){}
+      document.getElementById('scan-loading').style.display='none';
     }
-    document.getElementById('scan-loading').style.display = 'block';
-    document.getElementById('scan-close-row').style.display = 'none';
-    try {
-      const base64 = dataUrl.split(',')[1];
-      const mimeType = file.type || 'image/jpeg';
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 300,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: mimeType, data: base64 } },
-              { type: 'text', text: '這是一張日本收據。請用JSON回覆，只回JSON不要其他文字：{"shop":"店名（翻譯成繁體中文）","amount":金額數字只要日幣合計,"category":"食或樂或住或行或用品或禮其中一個"}' }
-            ]
-          }]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.[0]?.text || '';
-      const clean = text.replace(/```json|```/g,'').trim();
-      const parsed = JSON.parse(clean);
-      document.getElementById('sr-shop').textContent = parsed.shop || '—';
-      document.getElementById('sr-amt').textContent = parsed.amount ? '¥' + parsed.amount : '—';
-      document.getElementById('sr-cat').textContent = parsed.category || '食';
-      document.getElementById('scan-result').style.display = 'block';
-      prefillScanForm(parsed.shop || '', parsed.amount || '', parsed.category || '食');
-    } catch(err) {
-      prefillScanForm('', '', '食');
-    }
-    document.getElementById('scan-loading').style.display = 'none';
-    document.getElementById('scan-close-row').style.display = 'flex';
-  };
-  reader.readAsDataURL(file);
+    document.getElementById('scan-form-wrap').style.display='block';
+  };reader.readAsDataURL(file);
+}
+function saveScan(){
+  const name=document.getElementById('sf-name').value.trim();
+  const amt=parseFloat(document.getElementById('sf-amt').value)||0;
+  const wallet=document.getElementById('sf-wallet').value;
+  const day=parseInt(document.getElementById('sf-day').value)||1;
+  if(!name||!amt)return;
+  expenses.push({name,jpy:amt,ntd:Math.round(amt*R),cat:sfCat,wallet,day,who:scanWho});
+  localStorage.setItem('exps',JSON.stringify(expenses));
+  closeScan();renderExpList();renderDash();updateStats();
 }
 
-function prefillScanForm(name, amt, cat) {
-  document.getElementById('sf-name').value = name;
-  document.getElementById('sf-amt').value = amt;
-  const catSel = document.getElementById('sf-cat');
-  for (let i = 0; i < catSel.options.length; i++) {
-    if (catSel.options[i].value === cat || catSel.options[i].text === cat) { catSel.selectedIndex = i; break; }
-  }
-  document.getElementById('scan-add-section').style.display = 'block';
+// ── STATS ──
+function updateStats(){
+  const todo=cgData.reduce((s,g)=>{
+    const extra=JSON.parse(localStorage.getItem('ckadd-'+g.id)||'[]');
+    const n=g.items.length+extra.length;
+    const d=Array.from({length:n},(_,i)=>checkState[g.id+'-'+i]).filter(Boolean).length;
+    return s+(n-d);
+  },0);
+  document.getElementById('st-todo').textContent=todo;
+  const tj=expenses.reduce((s,e)=>s+e.jpy,0);
+  document.getElementById('st-jpy').textContent='¥'+tj.toLocaleString();
+  document.getElementById('st-ntd').textContent='NT$'+Math.round(tj*R).toLocaleString();
 }
 
-function saveScanExp() {
-  const name = document.getElementById('sf-name').value;
-  const amt = parseFloat(document.getElementById('sf-amt').value) || 0;
-  const cat = document.getElementById('sf-cat').value;
-  const wallet = document.getElementById('sf-wallet').value;
-  const day = parseInt(document.getElementById('sf-day').value) || 1;
-  if (!name) return;
-  addExp({ name, amt, curr:'JPY', cat, wallet, day, who: scanSelectedWho });
-  closeScan();
-}
-
-// ---- INIT ----
-renderItinerary();
-renderChecklist();
+// ── INIT ──
+document.getElementById('fab').className='fab hidden';
+renderItinerary();renderChecklist();
 </script>
 </body>
 </html>
